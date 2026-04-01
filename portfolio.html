@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neha Durgadmath ✨ Portfolio</title>
+<style>
+:root{
+  --pink:#FFB7C5;--lavender:#C9B8FF;--mint:#B8F0E0;
+  --peach:#FFDAB9;--yellow:#FFF3B0;--purple:#9B7FD4;
+  --teal:#5ECFB1;--text:#3d2c4e;--muted:#7a6b8a;
+  --card:rgba(255,255,255,0.75);--border:rgba(200,180,220,0.35);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background-color:#FDF6FF;
+  background-image:
+    linear-gradient(rgba(201,184,255,0.15) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,184,255,0.15) 1px,transparent 1px);
+  background-size:32px 32px;
+  color:var(--text);
+  font-family:'Segoe UI',system-ui,sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CURSOR */
+#cur{width:16px;height:16px;background:radial-gradient(circle,#FFB7C5,#C9B8FF);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 8px rgba(200,150,255,0.5);}
+.sp{position:fixed;pointer-events:none;z-index:9998;font-size:12px;animation:spfall 0.7s ease forwards;}
+@keyframes spfall{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-28px) scale(0);}}
+
+/* LEAVES - sides only */
+.leaf{position:fixed;pointer-events:none;z-index:1;font-size:1.4rem;animation:leafway linear infinite;}
+.leaf-left{left:0;animation-name:leafleft;}
+.leaf-right{right:0;animation-name:leafright;}
+@keyframes leafleft{0%{top:-5%;opacity:0;transform:translateX(0) rotate(0deg);}10%{opacity:0.7;}90%{opacity:0.7;}100%{top:105%;transform:translateX(30px) rotate(360deg);opacity:0;}}
+@keyframes leafright{0%{top:-5%;opacity:0;transform:translateX(0) rotate(0deg);}10%{opacity:0.7;}90%{opacity:0.7;}100%{top:105%;transform:translateX(-30px) rotate(-360deg);opacity:0;}}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(253,246,255,0.88);backdrop-filter:blur(12px);border-bottom:1.5px solid var(--border);padding:0.7rem 2rem;display:flex;justify-content:space-between;align-items:center;}
+.nav-logo{font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,var(--purple),#FF6B9D,var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-links{display:flex;gap:1.4rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:600;transition:color 0.3s;}
+.nav-links a:hover{color:var(--purple);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:5rem 2rem 2rem;position:relative;overflow:hidden;}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;max-width:1100px;width:100%;}
+.hero-left{z-index:2;}
+.hero-tag{display:inline-block;background:linear-gradient(135deg,rgba(255,183,197,0.3),rgba(201,184,255,0.3));border:1.5px solid var(--pink);padding:0.35rem 1rem;border-radius:20px;font-size:0.8rem;color:var(--purple);font-weight:700;margin-bottom:1.2rem;animation:fadeInDown 0.8s ease;}
+.hero-name{font-size:clamp(2.8rem,5vw,4.5rem);font-weight:900;line-height:1.05;margin-bottom:0.8rem;background:linear-gradient(135deg,var(--purple),#FF6B9D,var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeInUp 0.8s ease 0.2s both;}
+.hero-titles{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;animation:fadeInUp 0.8s ease 0.4s both;}
+.htag{background:rgba(255,255,255,0.8);border:1.5px solid var(--border);padding:0.25rem 0.7rem;border-radius:20px;font-size:0.75rem;font-weight:700;color:var(--purple);}
+.hero-typing{font-size:1rem;color:var(--muted);margin-bottom:1.8rem;min-height:1.5rem;animation:fadeInUp 0.8s ease 0.6s both;}
+.typing-word{color:var(--purple);font-weight:800;}
+.hero-btns{display:flex;gap:0.8rem;flex-wrap:wrap;animation:fadeInUp 0.8s ease 0.8s both;}
+.btn{padding:0.7rem 1.6rem;border-radius:25px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.3s;text-decoration:none;border:none;}
+.btn-pink{background:linear-gradient(135deg,var(--pink),var(--lavender));color:white;box-shadow:0 4px 15px rgba(200,150,255,0.25);}
+.btn-pink:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(200,150,255,0.35);}
+.btn-out{background:rgba(255,255,255,0.8);border:2px solid var(--lavender);color:var(--purple);}
+.btn-out:hover{background:rgba(201,184,255,0.15);transform:translateY(-3px);}
+
+/* HERO CHARACTER */
+.hero-right{display:flex;justify-content:center;align-items:flex-end;gap:1rem;z-index:2;animation:fadeInUp 0.8s ease 0.3s both;}
+.girl-wrap{animation:girlbounce 3s ease-in-out infinite;}
+@keyframes girlbounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.bot-wrap{animation:botbounce 3.5s ease-in-out infinite 0.5s;}
+@keyframes botbounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+/* QUOTE BANNER */
+.quote-banner{background:linear-gradient(135deg,rgba(255,183,197,0.2),rgba(201,184,255,0.2),rgba(184,240,224,0.2));border-top:1.5px solid var(--border);border-bottom:1.5px solid var(--border);padding:2.5rem 2rem;text-align:center;}
+.quote-text{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:var(--muted);max-width:700px;margin:0 auto 0.8rem;line-height:1.8;}
+.quote-author{font-weight:900;color:var(--purple);font-size:1rem;}
+
+/* SECTIONS */
+.sec{padding:5rem 2rem;max-width:1100px;margin:0 auto;}
+.sec-tinted{padding:5rem 2rem;background:linear-gradient(135deg,rgba(255,183,197,0.08),rgba(201,184,255,0.08));}
+.sec-tinted-mint{padding:5rem 2rem;background:linear-gradient(135deg,rgba(184,240,224,0.1),rgba(255,243,176,0.08));}
+.sec-inner{max-width:1100px;margin:0 auto;}
+.sec-label{font-size:0.75rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple);margin-bottom:0.4rem;}
+.sec-title{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;margin-bottom:2.5rem;}
+.sec-title span{background:linear-gradient(135deg,var(--purple),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:3rem;align-items:start;}
+.about-card{background:var(--card);border:1.5px solid var(--border);border-radius:24px;padding:2rem;text-align:center;backdrop-filter:blur(10px);box-shadow:0 8px 30px rgba(200,150,255,0.08);}
+.about-photo{width:130px;height:130px;border-radius:50%;margin:0 auto 1rem;overflow:hidden;border:3px solid var(--lavender);box-shadow:0 4px 20px rgba(200,150,255,0.25);}
+.about-photo img{width:100%;height:100%;object-fit:cover;}
+.about-name{font-size:1.2rem;font-weight:900;color:var(--text);margin-bottom:0.25rem;}
+.about-role{font-size:0.82rem;color:var(--purple);font-weight:700;margin-bottom:1rem;}
+.fact{background:rgba(255,183,197,0.12);border:1px solid var(--border);border-radius:10px;padding:0.45rem 0.7rem;font-size:0.8rem;color:var(--muted);text-align:left;margin-bottom:0.4rem;}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:1rem;font-size:0.92rem;}
+.about-text p strong{color:var(--text);}
+.timeline{margin-top:1.5rem;border-left:3px solid var(--lavender);padding-left:1.5rem;}
+.tli{position:relative;margin-bottom:1.3rem;}
+.tli::before{content:'';position:absolute;left:-1.85rem;top:5px;width:11px;height:11px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--teal));}
+.tly{color:var(--teal);font-size:0.75rem;font-weight:800;margin-bottom:2px;}
+.tlr{font-weight:800;font-size:0.88rem;color:var(--text);}
+.tld{color:var(--muted);font-size:0.8rem;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;}
+.skill-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:1.3rem;backdrop-filter:blur(10px);transition:all 0.3s;}
+.skill-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(200,150,255,0.15);border-color:var(--lavender);}
+.sk-icon{font-size:1.4rem;margin-bottom:0.5rem;}
+.sk-title{font-size:0.78rem;font-weight:800;color:var(--purple);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.7rem;}
+.sk-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.sk-tag{background:rgba(201,184,255,0.18);border:1px solid rgba(201,184,255,0.4);color:var(--text);padding:0.22rem 0.55rem;border-radius:8px;font-size:0.73rem;font-weight:500;}
+
+/* EXPERIENCE */
+.exp-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1rem;backdrop-filter:blur(10px);transition:all 0.3s;position:relative;overflow:hidden;}
+.exp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,var(--pink),var(--lavender),var(--mint));}
+.exp-card:hover{transform:translateX(5px);box-shadow:0 8px 24px rgba(200,150,255,0.12);}
+.exp-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.25rem;}
+.exp-title{font-size:0.97rem;font-weight:900;color:var(--text);}
+.exp-date{font-size:0.75rem;color:var(--purple);font-weight:700;background:rgba(201,184,255,0.2);padding:0.2rem 0.6rem;border-radius:10px;}
+.exp-org{font-size:0.82rem;color:var(--teal);font-weight:700;margin-bottom:0.7rem;}
+.exp-list{list-style:none;}
+.exp-list li{font-size:0.82rem;color:var(--muted);line-height:1.6;margin-bottom:0.25rem;padding-left:1.1rem;position:relative;}
+.exp-list li::before{content:'✦';position:absolute;left:0;color:var(--pink);font-size:0.65rem;top:3px;}
+
+/* HORIZONTAL SCROLL PROJECTS */
+.proj-scroll-wrap{position:relative;overflow:hidden;}
+.proj-scroll-track{display:flex;gap:1.5rem;overflow-x:auto;scroll-behavior:smooth;padding:1rem 0.5rem 1.5rem;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;}
+.proj-scroll-track::-webkit-scrollbar{display:none;}
+.proj-scroll-track:active{cursor:grabbing;}
+.proj-card{min-width:320px;max-width:320px;background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:1.8rem;backdrop-filter:blur(10px);transition:all 0.3s;flex-shrink:0;position:relative;overflow:hidden;}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,var(--pink),var(--lavender),var(--mint));}
+.proj-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(200,150,255,0.18);border-color:var(--lavender);}
+.proj-emoji{font-size:2.2rem;margin-bottom:0.8rem;}
+.proj-title{font-size:1rem;font-weight:900;color:var(--text);margin-bottom:0.3rem;}
+.proj-sub{font-size:0.75rem;color:var(--purple);font-style:italic;margin-bottom:0.7rem;}
+.proj-desc{font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:1rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.proj-tag{background:rgba(94,207,177,0.12);border:1px solid rgba(94,207,177,0.3);color:var(--teal);padding:0.2rem 0.55rem;border-radius:6px;font-size:0.7rem;font-weight:700;}
+.scroll-btns{display:flex;gap:0.8rem;margin-bottom:1rem;}
+.scroll-btn{background:var(--card);border:1.5px solid var(--lavender);color:var(--purple);width:40px;height:40px;border-radius:50%;font-size:1rem;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;font-weight:900;}
+.scroll-btn:hover{background:rgba(201,184,255,0.3);transform:scale(1.1);}
+
+/* CERTS */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+.cert-card{background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center;transition:all 0.3s;backdrop-filter:blur(10px);}
+.cert-card:hover{transform:translateY(-4px);border-color:var(--lavender);box-shadow:0 8px 20px rgba(200,150,255,0.12);}
+.cert-ico{font-size:1.8rem;margin-bottom:0.4rem;}
+.cert-name{font-size:0.8rem;font-weight:800;color:var(--text);}
+.cert-iss{font-size:0.72rem;color:var(--muted);margin-top:0.2rem;}
+
+/* HOBBIES */
+.hobby-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.2rem;}
+.hobby-card{background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:1.8rem 1.4rem;text-align:center;transition:all 0.3s;backdrop-filter:blur(10px);}
+.hobby-card:hover{transform:translateY(-6px) rotate(1.5deg);box-shadow:0 15px 30px rgba(200,150,255,0.15);}
+.hobby-ico{font-size:2.5rem;margin-bottom:0.7rem;}
+.hobby-title{font-size:0.95rem;font-weight:900;color:var(--text);margin-bottom:0.25rem;}
+.hobby-desc{font-size:0.78rem;color:var(--muted);}
+
+/* YOUTUBE */
+.yt-card{background:linear-gradient(135deg,rgba(255,183,197,0.15),rgba(201,184,255,0.15));border:2px solid var(--pink);border-radius:20px;padding:2rem;text-align:center;transition:all 0.3s;margin-top:1.5rem;}
+.yt-card:hover{transform:translateY(-4px);box-shadow:0 15px 30px rgba(255,100,100,0.12);}
+.yt-ico{font-size:2.5rem;margin-bottom:0.8rem;}
+.yt-name{font-size:1.4rem;font-weight:900;margin-bottom:0.3rem;}
+.yt-desc{color:var(--muted);font-size:0.88rem;margin-bottom:1.2rem;line-height:1.6;}
+.yt-btn{display:inline-block;background:linear-gradient(135deg,#FF6B6B,#FF8E8E);color:white;padding:0.7rem 1.8rem;border-radius:25px;text-decoration:none;font-weight:800;font-size:0.88rem;transition:all 0.3s;}
+.yt-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(255,100,100,0.25);}
+
+/* CHATBOT */
+.chatbox{background:var(--card);border:2px solid var(--lavender);border-radius:24px;overflow:hidden;backdrop-filter:blur(10px);box-shadow:0 20px 40px rgba(200,150,255,0.12);max-width:680px;margin:0 auto;}
+.chat-head{background:linear-gradient(135deg,rgba(255,183,197,0.35),rgba(201,184,255,0.35));padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.8rem;}
+.chat-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--teal));display:flex;align-items:center;justify-content:center;font-size:1.1rem;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+.chat-nm{font-weight:900;color:var(--text);font-size:0.92rem;}
+.chat-st{font-size:0.7rem;color:var(--teal);font-weight:700;}
+.chat-msgs{height:280px;overflow-y:auto;padding:1.2rem;display:flex;flex-direction:column;gap:0.8rem;}
+.chat-msgs::-webkit-scrollbar{width:3px;}
+.chat-msgs::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.msg{max-width:82%;padding:0.75rem 1rem;border-radius:16px;font-size:0.85rem;line-height:1.5;white-space:pre-line;}
+.msg-bot{background:rgba(201,184,255,0.18);border:1px solid rgba(201,184,255,0.35);align-self:flex-start;border-radius:4px 16px 16px 16px;color:var(--text);}
+.msg-user{background:linear-gradient(135deg,rgba(255,183,197,0.35),rgba(201,184,255,0.35));align-self:flex-end;border-radius:16px 4px 16px 16px;color:var(--text);}
+.msg-typing{display:flex;gap:4px;padding:0.75rem 1rem;background:rgba(201,184,255,0.18);border:1px solid rgba(201,184,255,0.35);border-radius:4px 16px 16px 16px;align-self:flex-start;width:fit-content;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--purple);animation:typing 1s infinite;}
+.dot:nth-child(2){animation-delay:.2s;}.dot:nth-child(3){animation-delay:.4s;}
+@keyframes typing{0%,100%{transform:translateY(0);opacity:.4;}50%{transform:translateY(-4px);opacity:1;}}
+.quick-qs{display:flex;flex-wrap:wrap;gap:0.4rem;padding:0 1.2rem 0.8rem;}
+.quick-q{background:rgba(255,183,197,0.18);border:1px solid var(--pink);color:var(--purple);padding:0.28rem 0.7rem;border-radius:20px;font-size:0.73rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.quick-q:hover{background:rgba(255,183,197,0.4);}
+.chat-inp-area{padding:0.9rem 1.2rem;border-top:1px solid var(--border);display:flex;gap:0.7rem;}
+.chat-inp{flex:1;background:rgba(255,255,255,0.7);border:1.5px solid var(--border);border-radius:20px;padding:0.65rem 1rem;color:var(--text);font-size:0.85rem;outline:none;transition:border-color 0.3s;}
+.chat-inp:focus{border-color:var(--lavender);}
+.chat-send{background:linear-gradient(135deg,var(--purple),var(--teal));border:none;border-radius:20px;padding:0.65rem 1.1rem;color:white;cursor:pointer;font-size:0.85rem;font-weight:800;transition:all 0.3s;}
+.chat-send:hover{transform:scale(1.05);}
+
+/* QUIZ */
+.quiz-box{background:var(--card);border:2px solid var(--pink);border-radius:24px;padding:2rem;backdrop-filter:blur(10px);box-shadow:0 20px 40px rgba(255,150,180,0.1);text-align:center;max-width:680px;margin:0 auto;}
+.quiz-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.5rem;}
+.quiz-score{background:linear-gradient(135deg,var(--pink),var(--lavender));color:white;padding:0.35rem 1rem;border-radius:20px;font-weight:900;font-size:0.85rem;}
+.quiz-prog{font-size:0.8rem;color:var(--muted);font-weight:700;}
+.quiz-q{font-size:1.05rem;font-weight:900;color:var(--text);margin-bottom:1.3rem;line-height:1.5;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-bottom:1.2rem;}
+.quiz-opt{background:rgba(255,255,255,0.7);border:2px solid var(--border);border-radius:14px;padding:0.75rem;font-size:0.82rem;font-weight:700;color:var(--text);cursor:pointer;transition:all 0.2s;}
+.quiz-opt:hover{border-color:var(--lavender);background:rgba(201,184,255,0.15);transform:scale(1.02);}
+.quiz-opt.correct{background:rgba(94,207,177,0.25);border-color:var(--teal);color:#2d8a6e;}
+.quiz-opt.wrong{background:rgba(255,100,100,0.12);border-color:#ff8888;color:#cc4444;}
+.quiz-fb{font-size:0.95rem;font-weight:900;min-height:1.4rem;margin-bottom:0.8rem;}
+.quiz-fb.correct{color:var(--teal);}.quiz-fb.wrong{color:#ff6b6b;}
+.quiz-next{background:linear-gradient(135deg,var(--pink),var(--lavender));color:white;border:none;border-radius:25px;padding:0.7rem 1.8rem;font-size:0.9rem;font-weight:900;cursor:pointer;transition:all 0.3s;display:none;}
+.quiz-next:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(200,150,255,0.25);}
+.quiz-res{display:none;text-align:center;}
+.res-emoji{font-size:2.8rem;margin-bottom:0.5rem;}
+.res-score{font-size:1.4rem;font-weight:900;color:var(--purple);margin-bottom:0.4rem;}
+.res-msg{color:var(--muted);margin-bottom:1.2rem;font-size:0.9rem;}
+.quiz-restart{background:linear-gradient(135deg,var(--purple),var(--teal));color:white;border:none;border-radius:25px;padding:0.7rem 1.8rem;font-size:0.9rem;font-weight:900;cursor:pointer;transition:all 0.3s;}
+.coin{position:fixed;pointer-events:none;z-index:9999;font-size:1.4rem;animation:coinfly 1s ease forwards;}
+@keyframes coinfly{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-70px) scale(0.4) rotate(360deg);}}
+
+/* CONTACT */
+.contact-grid{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+.contact-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:1.3rem 1.8rem;text-align:center;text-decoration:none;color:var(--text);transition:all 0.3s;min-width:145px;backdrop-filter:blur(10px);font-size:0.85rem;}
+.contact-card:hover{border-color:var(--lavender);transform:translateY(-4px);box-shadow:0 10px 22px rgba(200,150,255,0.12);}
+.con-ico{font-size:1.6rem;margin-bottom:0.4rem;}
+.con-lbl{font-size:0.7rem;color:var(--muted);margin-top:0.2rem;}
+
+/* MUSIC */
+#music-btn{position:fixed;bottom:1.8rem;right:1.8rem;z-index:500;background:linear-gradient(135deg,var(--pink),var(--lavender));border:none;border-radius:50%;width:48px;height:48px;font-size:1.2rem;cursor:pointer;box-shadow:0 4px 14px rgba(200,150,255,0.25);transition:all 0.3s;}
+#music-btn:hover{transform:scale(1.1);}
+
+/* FOOTER */
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.82rem;border-top:1.5px solid var(--border);background:rgba(253,246,255,0.7);}
+
+/* ANIMATIONS */
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr;text-align:center;}
+  .hero-right{margin-top:1rem;}
+  .about-grid{grid-template-columns:1fr;}
+  .quiz-opts{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<button id="music-btn" onclick="toggleMusic()">🎵</button>
+<audio id="bgm" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+</audio>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">✨ Neha Durgadmath</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#hobbies">Hobbies</a></li>
+    <li><a href="#chat">Ask AI</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">✨ Open to AI & Data Science roles · Melbourne</div>
+      <h1 class="hero-name">Neha<br>Durgadmath</h1>
+      <div class="hero-titles">
+        <span class="htag">👩‍💻 Miss Data Scientist</span>
+        <span class="htag">🤖 Miss AI Engineer</span>
+        <span class="htag">🎮 Miss Streamer</span>
+        <span class="htag">🎨 Miss Painter</span>
+      </div>
+      <div class="hero-typing">I love <span class="typing-word" id="typing"></span></div>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-pink">✨ My Work</a>
+        <a href="#chat" class="btn btn-out">🤖 Ask AI About Me</a>
+        <a href="#quiz" class="btn btn-out">🎮 Play Quiz</a>
+      </div>
+    </div>
+
+    <!-- ANIME GIRL + BOT -->
+    <div class="hero-right">
+      <div class="girl-wrap">
+        <svg width="220" height="280" viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- Hoodie body -->
+          <ellipse cx="110" cy="200" rx="55" ry="65" fill="#E8E0FF"/>
+          <!-- Hood -->
+          <ellipse cx="110" cy="130" rx="52" ry="38" fill="#E8E0FF"/>
+          <!-- Legs -->
+          <rect x="78" y="250" width="22" height="35" rx="11" fill="#C9B8FF"/>
+          <rect x="118" y="250" width="22" height="35" rx="11" fill="#C9B8FF"/>
+          <!-- Shoes -->
+          <ellipse cx="89" cy="285" rx="14" ry="8" fill="#9B7FD4"/>
+          <ellipse cx="129" cy="285" rx="14" ry="8" fill="#9B7FD4"/>
+          <!-- Laptop -->
+          <rect x="60" y="205" width="100" height="65" rx="6" fill="#C9B8FF"/>
+          <rect x="63" y="208" width="94" height="52" rx="4" fill="#9B7FD4"/>
+          <rect x="66" y="211" width="88" height="46" rx="3" fill="#F0EBFF"/>
+          <!-- Code on screen -->
+          <rect x="70" y="217" width="45" height="3" rx="1.5" fill="#C9B8FF"/>
+          <rect x="70" y="224" width="60" height="2.5" rx="1.25" fill="#FFB7C5"/>
+          <rect x="70" y="230" width="50" height="2.5" rx="1.25" fill="#B8F0E0"/>
+          <rect x="70" y="236" width="35" height="2.5" rx="1.25" fill="#C9B8FF"/>
+          <rect x="70" y="242" width="55" height="2.5" rx="1.25" fill="#FFB7C5"/>
+          <!-- Arms -->
+          <ellipse cx="60" cy="205" rx="13" ry="28" fill="#D4C5FF" transform="rotate(-10 60 205)"/>
+          <ellipse cx="160" cy="205" rx="13" ry="28" fill="#D4C5FF" transform="rotate(10 160 205)"/>
+          <!-- Head -->
+          <circle cx="110" cy="100" r="48" fill="#FFDAB9"/>
+          <!-- Hair back -->
+          <ellipse cx="110" cy="72" rx="50" ry="35" fill="#2d1f3d"/>
+          <ellipse cx="65" cy="100" rx="16" ry="30" fill="#2d1f3d"/>
+          <ellipse cx="155" cy="100" rx="16" ry="30" fill="#2d1f3d"/>
+          <!-- Bun -->
+          <circle cx="110" cy="50" r="20" fill="#2d1f3d"/>
+          <circle cx="110" cy="46" r="13" fill="#4a3060"/>
+          <!-- Hair pins -->
+          <circle cx="96" cy="50" r="4" fill="#FFB7C5"/>
+          <circle cx="124" cy="50" r="4" fill="#C9B8FF"/>
+          <!-- Face -->
+          <circle cx="94" cy="102" r="9" fill="white"/>
+          <circle cx="126" cy="102" r="9" fill="white"/>
+          <circle cx="95" cy="103" r="5.5" fill="#2d1f3d"/>
+          <circle cx="127" cy="103" r="5.5" fill="#2d1f3d"/>
+          <circle cx="96.5" cy="101" r="2" fill="white"/>
+          <circle cx="128.5" cy="101" r="2" fill="white"/>
+          <!-- Stars in eyes -->
+          <text x="91" y="106" font-size="5" fill="#FFD700">✦</text>
+          <text x="123" y="106" font-size="5" fill="#FFD700">✦</text>
+          <!-- Blush -->
+          <ellipse cx="82" cy="112" rx="10" ry="6" fill="#FFB7C5" opacity="0.55"/>
+          <ellipse cx="138" cy="112" rx="10" ry="6" fill="#FFB7C5" opacity="0.55"/>
+          <!-- Smile -->
+          <path d="M98 120 Q110 132 122 120" fill="none" stroke="#cc6688" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Glasses -->
+          <rect x="83" y="95" width="22" height="16" rx="6" fill="none" stroke="#9B7FD4" stroke-width="2.2"/>
+          <rect x="115" y="95" width="22" height="16" rx="6" fill="none" stroke="#9B7FD4" stroke-width="2.2"/>
+          <line x1="105" y1="103" x2="115" y2="103" stroke="#9B7FD4" stroke-width="2.2"/>
+          <line x1="62" y1="103" x2="83" y2="103" stroke="#9B7FD4" stroke-width="1.5"/>
+          <line x1="137" y1="103" x2="158" y2="103" stroke="#9B7FD4" stroke-width="1.5"/>
+          <!-- Hoodie strings -->
+          <line x1="100" y1="145" x2="95" y2="175" stroke="#C9B8FF" stroke-width="2"/>
+          <line x1="120" y1="145" x2="125" y2="175" stroke="#C9B8FF" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <!-- CUTE READING BOT -->
+      <div class="bot-wrap">
+        <svg width="130" height="150" viewBox="0 0 130 150" xmlns="http://www.w3.org/2000/svg">
+          <!-- Body -->
+          <rect x="25" y="65" width="80" height="70" rx="20" fill="#C9D8FF"/>
+          <rect x="28" y="68" width="74" height="64" rx="18" fill="#D8E5FF"/>
+          <!-- Tummy screen -->
+          <rect x="38" y="80" width="54" height="35" rx="8" fill="#A8C4FF"/>
+          <rect x="41" y="83" width="48" height="29" rx="6" fill="#C5D8FF"/>
+          <!-- Smile on tummy -->
+          <path d="M52 98 Q65 108 78 98" fill="none" stroke="#7B9FE0" stroke-width="2" stroke-linecap="round"/>
+          <!-- Legs -->
+          <rect x="38" y="128" width="18" height="22" rx="9" fill="#B8C8FF"/>
+          <rect x="74" y="128" width="18" height="22" rx="9" fill="#B8C8FF"/>
+          <!-- Feet -->
+          <ellipse cx="47" cy="150" rx="13" ry="7" fill="#9B7FD4"/>
+          <ellipse cx="83" cy="150" rx="13" ry="7" fill="#9B7FD4"/>
+          <!-- Arms holding book -->
+          <rect x="5" y="80" width="25" height="14" rx="7" fill="#C9D8FF"/>
+          <rect x="100" y="80" width="25" height="14" rx="7" fill="#C9D8FF"/>
+          <!-- Book -->
+          <rect x="28" y="88" width="74" height="52" rx="5" fill="#FFB7C5" transform="rotate(-5 65 114)"/>
+          <rect x="32" y="91" width="34" height="49" rx="4" fill="#FF8FAB" transform="rotate(-5 65 114)"/>
+          <rect x="67" y="88" width="34" height="52" rx="4" fill="#FFD4E0" transform="rotate(-5 65 114)"/>
+          <!-- Book lines -->
+          <line x1="38" y1="100" x2="62" y2="97" stroke="#FF6B8A" stroke-width="1.5" opacity="0.5"/>
+          <line x1="38" y1="106" x2="62" y2="103" stroke="#FF6B8A" stroke-width="1.5" opacity="0.5"/>
+          <line x1="38" y1="112" x2="62" y2="109" stroke="#FF6B8A" stroke-width="1.5" opacity="0.5"/>
+          <!-- Head -->
+          <rect x="22" y="8" width="86" height="70" rx="28" fill="#C9D8FF"/>
+          <rect x="25" y="11" width="80" height="64" rx="25" fill="#D8E5FF"/>
+          <!-- Antenna -->
+          <line x1="65" y1="8" x2="65" y2="-5" stroke="#A8C4FF" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="65" cy="-5" r="6" fill="#9B7FD4"/>
+          <circle cx="65" cy="-5" r="3" fill="#C9B8FF"/>
+          <!-- Ears -->
+          <rect x="8" y="25" width="18" height="32" rx="9" fill="#B8C8FF"/>
+          <rect x="104" y="25" width="18" height="32" rx="9" fill="#B8C8FF"/>
+          <!-- Eyes -->
+          <circle cx="48" cy="38" r="16" fill="white"/>
+          <circle cx="82" cy="38" r="16" fill="white"/>
+          <circle cx="48" cy="39" r="10" fill="#5B9BD5"/>
+          <circle cx="82" cy="39" r="10" fill="#5B9BD5"/>
+          <circle cx="48" cy="39" r="6" fill="#2d5a8a"/>
+          <circle cx="82" cy="39" r="6" fill="#2d5a8a"/>
+          <circle cx="51" cy="36" r="3" fill="white"/>
+          <circle cx="85" cy="36" r="3" fill="white"/>
+          <!-- Blush -->
+          <ellipse cx="33" cy="50" rx="9" ry="5.5" fill="#FFB7C5" opacity="0.6"/>
+          <ellipse cx="97" cy="50" rx="9" ry="5.5" fill="#FFB7C5" opacity="0.6"/>
+          <!-- Smile -->
+          <path d="M52 58 Q65 68 78 58" fill="none" stroke="#7B9FE0" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-banner">
+  <p class="quote-text">"Amidst the vast sea of knowledge, remain a humble learner! No claims of knowing everything — just an unwavering passion for learning, exploring and consistently delivering my best."</p>
+  <p class="quote-author">— Neha Durgadmath 👑</p>
+</div>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="sec-label">Who I am</div>
+  <h2 class="sec-title">My <span>Story</span></h2>
+  <div class="about-grid">
+    <div class="about-card reveal">
+      <div class="about-photo">
+        <img src="https://avatars.githubusercontent.com/NehaDurgadmath" alt="Neha"
+             onerror="this.parentElement.innerHTML='👩‍💻'">
+      </div>
+      <div class="about-name">Neha Durgadmath</div>
+      <div class="about-role">AI Engineer & Data Scientist</div>
+      <div class="fact">📍 Melbourne, Australia</div>
+      <div class="fact">🎓 Master of Data Science — RMIT</div>
+      <div class="fact">🤖 AI Engineer at Outlier AI</div>
+      <div class="fact">🎮 Streamer — NiaGaming (1.39K subs!)</div>
+      <div class="fact">🎨 Painter & Creator</div>
+      <div class="fact">🌱 Originally from Bangalore, India</div>
+    </div>
+    <div class="about-text reveal">
+      <p>I'm <strong>Neha</strong> — a Data Scientist turned AI Engineer with a journey spanning entrepreneurship, published research and hands-on AI development.</p>
+      <p>I <strong>co-founded and ran a company</strong> before pivoting into data science — which means I bring both technical depth and real business sense. I published research papers, built predictive models across 107 Australian regions, and now train and evaluate LLMs and build agentic AI pipelines.</p>
+      <p>I independently built two production-ready AI systems inspired by enterprise consulting workflows — because I love learning by doing. When I'm not coding, I'm streaming games on YouTube as <strong>NiaGaming</strong> or painting! 🎨</p>
+      <div class="timeline">
+        <div class="tli"><div class="tly">2017 — 2021</div><div class="tlr">Bachelor of CS Engineering · VTU Bangalore</div><div class="tld">Built foundations in CS and IT</div></div>
+        <div class="tli"><div class="tly">2020 — 2022</div><div class="tlr">Co-founder & CEO · Offside Media</div><div class="tld">Built businesses, led teams, 33% revenue growth</div></div>
+        <div class="tli"><div class="tly">2022 — 2023</div><div class="tlr">Master of Data Science · RMIT Melbourne</div><div class="tld">Published research, predictive modelling</div></div>
+        <div class="tli"><div class="tly">2023 — 2024</div><div class="tlr">Data Scientist · Cultural Infusion</div><div class="tld">AI research, Power BI, government insights</div></div>
+        <div class="tli"><div class="tly">2024 — Now</div><div class="tlr">AI Engineer · Outlier AI</div><div class="tld">LLM evaluation, prompt engineering, agentic AI</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div class="sec-tinted" id="skills">
+  <div class="sec-inner">
+    <div class="sec-label">What I know</div>
+    <h2 class="sec-title">Skills & <span>Expertise</span></h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal"><div class="sk-icon">🤖</div><div class="sk-title">AI & LLM</div><div class="sk-tags"><span class="sk-tag">LLM Training & Evaluation</span><span class="sk-tag">Prompt Engineering</span><span class="sk-tag">RAG Architecture</span><span class="sk-tag">Agentic AI</span><span class="sk-tag">Document Vectorisation</span><span class="sk-tag">Semantic Search</span><span class="sk-tag">NLP</span></div></div>
+      <div class="skill-card reveal"><div class="sk-icon">☁️</div><div class="sk-title">AWS Cloud</div><div class="sk-tags"><span class="sk-tag">AWS SES</span><span class="sk-tag">S3</span><span class="sk-tag">Lambda</span><span class="sk-tag">SageMaker</span><span class="sk-tag">Bedrock</span><span class="sk-tag">Redshift</span><span class="sk-tag">Transcribe</span><span class="sk-tag">Comprehend</span><span class="sk-tag">IAM</span></div></div>
+      <div class="skill-card reveal"><div class="sk-icon">💻</div><div class="sk-title">Programming</div><div class="sk-tags"><span class="sk-tag">Python</span><span class="sk-tag">R</span><span class="sk-tag">SQL</span><span class="sk-tag">VBA</span></div></div>
+      <div class="skill-card reveal"><div class="sk-icon">📊</div><div class="sk-title">Data & Analytics</div><div class="sk-tags"><span class="sk-tag">Power BI</span><span class="sk-tag">Tableau</span><span class="sk-tag">Predictive Modelling</span><span class="sk-tag">A/B Testing</span><span class="sk-tag">Statistical Analysis</span></div></div>
+      <div class="skill-card reveal"><div class="sk-icon">🗄️</div><div class="sk-title">Databases</div><div class="sk-tags"><span class="sk-tag">MySQL</span><span class="sk-tag">PostgreSQL</span><span class="sk-tag">MongoDB</span><span class="sk-tag">SQLite</span></div></div>
+      <div class="skill-card reveal"><div class="sk-icon">🤝</div><div class="sk-title">Consulting</div><div class="sk-tags"><span class="sk-tag">Requirements Gathering</span><span class="sk-tag">Stakeholder Engagement</span><span class="sk-tag">Business Partnering</span><span class="sk-tag">Strategic Presentations</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section class="sec" id="experience">
+  <div class="sec-label">Where I've worked</div>
+  <h2 class="sec-title">Work <span>Experience</span></h2>
+  <div class="exp-card reveal">
+    <div class="exp-head"><div class="exp-title">AI Model Trainer & Data Scientist</div><div class="exp-date">Mar 2024 – Present</div></div>
+    <div class="exp-org">🤖 Outlier AI · Melbourne, Australia (Freelance)</div>
+    <ul class="exp-list">
+      <li>Train and evaluate LLMs on data science, SQL reasoning and analytical tasks, improving model accuracy and business relevance.</li>
+      <li>Design and stress-test prompts for agentic AI workflows, identifying edge cases and reasoning failures.</li>
+      <li>Write structured quality assessments evaluating correctness and alignment with real-world decision-making standards.</li>
+      <li>Develop failure taxonomies contributing directly to enterprise AI training datasets.</li>
+    </ul>
+  </div>
+  <div class="exp-card reveal">
+    <div class="exp-head"><div class="exp-title">Store Team Member — Online Orders & Service Desk</div><div class="exp-date">Nov 2024 – Present</div></div>
+    <div class="exp-org">🛒 Woolworths Group (BIG W) · Melbourne (Casual)</div>
+    <ul class="exp-list">
+      <li>Support online order fulfilment in high-volume retail environment.</li>
+      <li>Review daily operational reports — directly inspired the BIG W AI Support Bot project.</li>
+    </ul>
+  </div>
+  <div class="exp-card reveal">
+    <div class="exp-head"><div class="exp-title">Data Scientist — AI Research & Analytics</div><div class="exp-date">Jul 2023 – Apr 2024</div></div>
+    <div class="exp-org">🌏 Cultural Infusion · Melbourne, Australia</div>
+    <ul class="exp-list">
+      <li>Led end-to-end AI analytics projects, achieving 88.78% accuracy across 107 SA4 regions.</li>
+      <li>Built predictive models using Python, R and SQL on large-scale Australian demographic datasets.</li>
+      <li>Published two major research outputs on cultural diversity and tech revenue forecasting.</li>
+    </ul>
+  </div>
+  <div class="exp-card reveal">
+    <div class="exp-head"><div class="exp-title">Data Scientist</div><div class="exp-date">Feb 2023 – Mar 2023</div></div>
+    <div class="exp-org">🌊 Take 3 From the Sea · Melbourne</div>
+    <ul class="exp-list">
+      <li>ML-informed segmentation models increasing outreach effectiveness by 30%.</li>
+    </ul>
+  </div>
+  <div class="exp-card reveal">
+    <div class="exp-head"><div class="exp-title">Co-founder & CEO</div><div class="exp-date">Jun 2020 – Jul 2022</div></div>
+    <div class="exp-org">🚀 Offside Media · Bangalore, India</div>
+    <ul class="exp-list">
+      <li>Drove minimum 33% sales increase for SME and NGO clients through data strategy.</li>
+      <li>Led cross-functional teams across digital, content and analytics.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROJECTS - HORIZONTAL SCROLL -->
+<div class="sec-tinted-mint" id="projects">
+  <div class="sec-inner">
+    <div class="sec-label">What I built</div>
+    <h2 class="sec-title">My <span>Projects</span></h2>
+    <div class="scroll-btns">
+      <button class="scroll-btn" onclick="scrollProj(-1)">←</button>
+      <button class="scroll-btn" onclick="scrollProj(1)">→</button>
+    </div>
+    <div class="proj-scroll-wrap">
+      <div class="proj-scroll-track" id="projTrack">
+        <div class="proj-card">
+          <div class="proj-emoji">🤖</div>
+          <div class="proj-title">Cevo AI Client Onboarding System</div>
+          <div class="proj-sub">Agentic AI · OpenAI · AWS SES · R · 2026</div>
+          <p class="proj-desc">Fully autonomous agentic AI pipeline — natural language intake, document analysis, AWS solution recommendations, meeting scheduling and email confirmation. No human intervention.</p>
+          <div class="proj-tags"><span class="proj-tag">Agentic AI</span><span class="proj-tag">OpenAI</span><span class="proj-tag">AWS SES</span><span class="proj-tag">R</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-emoji">📚</div>
+          <div class="proj-title">BIG W RAG Customer Support Bot</div>
+          <div class="proj-sub">RAG · Vectorisation · Data Sovereignty · 2026</div>
+          <p class="proj-desc">Production-grade RAG system using real BIG W policy documents. Full vectorisation pipeline with OpenAI embeddings and cosine similarity search. Data Sovereignty compliant.</p>
+          <div class="proj-tags"><span class="proj-tag">RAG</span><span class="proj-tag">Vectorisation</span><span class="proj-tag">Data Sovereignty</span><span class="proj-tag">AWS</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-emoji">🍎</div>
+          <div class="proj-title">Apple vs Samsung Market Analysis</div>
+          <div class="proj-sub">Python · Power BI · Data Visualisation · 2023</div>
+          <p class="proj-desc">Analysed Apple's market performance vs Samsung. Demonstrated revenue growth from $37.4B to $65B and surfaced $53B subscription services contribution.</p>
+          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Power BI</span><span class="proj-tag">Data Viz</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-emoji">🚗</div>
+          <div class="proj-title">Australia Road Safety Analysis</div>
+          <div class="proj-sub">R · ggplot2 · Predictive Modelling · 2023</div>
+          <p class="proj-desc">Built R and ggplot2 models identifying a 15% reduction in Australian road fatalities from 2018 to 2022, contributing to evidence-based policy decisions.</p>
+          <div class="proj-tags"><span class="proj-tag">R</span><span class="proj-tag">ggplot2</span><span class="proj-tag">Policy</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-emoji">📈</div>
+          <div class="proj-title">Tech Revenue Forecasting</div>
+          <div class="proj-sub">Python · ML · Published White Paper · 2024</div>
+          <p class="proj-desc">Published white paper forecasting revenue trajectories for leading tech companies 2024-2029 using ML-driven financial modelling and historical data analysis.</p>
+          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">ML</span><span class="proj-tag">Published</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-emoji">🌏</div>
+          <div class="proj-title">Cultural Diversity Research</div>
+          <div class="proj-sub">R · Python · Published Paper · 2024</div>
+          <p class="proj-desc">88.78% accuracy in ML analysis of cultural diversity's impact on urban development across 107 Australian SA4 regions. Published as a formal research paper.</p>
+          <div class="proj-tags"><span class="proj-tag">R</span><span class="proj-tag">Python</span><span class="proj-tag">Research</span><span class="proj-tag">Published</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div class="sec-tinted" id="certifications">
+  <div class="sec-inner">
+    <div class="sec-label">What I've earned</div>
+    <h2 class="sec-title">My <span>Certifications</span></h2>
+    <div class="cert-grid">
+      <div class="cert-card reveal"><div class="cert-ico">🏆</div><div class="cert-name">Azure AI Fundamentals</div><div class="cert-iss">Microsoft Certified</div></div>
+      <div class="cert-card reveal"><div class="cert-ico">🏆</div><div class="cert-name">Azure Data Fundamentals</div><div class="cert-iss">Microsoft Certified</div></div>
+      <div class="cert-card reveal"><div class="cert-ico">☁️</div><div class="cert-name">AWS Data Analytics</div><div class="cert-iss">Amazon Web Services</div></div>
+      <div class="cert-card reveal"><div class="cert-ico">📊</div><div class="cert-name">Advanced Google Analytics</div><div class="cert-iss">Google</div></div>
+      <div class="cert-card reveal"><div class="cert-ico">🎓</div><div class="cert-name">Data Analytics</div><div class="cert-iss">IBM</div></div>
+      <div class="cert-card reveal"><div class="cert-ico">🤖</div><div class="cert-name">Machine Learning</div><div class="cert-iss">LinkedIn Learning</div></div>
+      <div class="cert-card reveal"><div class="cert-ico">📈</div><div class="cert-name">Power BI</div><div class="cert-iss">LinkedIn Learning</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- HOBBIES + YOUTUBE -->
+<section class="sec" id="hobbies">
+  <div class="sec-label">Beyond work</div>
+  <h2 class="sec-title">My <span>Hobbies</span></h2>
+  <div class="hobby-grid">
+    <div class="hobby-card reveal"><div class="hobby-ico">🎮</div><div class="hobby-title">Game Streaming</div><div class="hobby-desc">NiaGaming on YouTube — 1.39K subscribers and 217 videos!</div></div>
+    <div class="hobby-card reveal"><div class="hobby-ico">🎨</div><div class="hobby-title">Painting</div><div class="hobby-desc">Painting is my creative escape from lines of code!</div></div>
+    <div class="hobby-card reveal"><div class="hobby-ico">🤖</div><div class="hobby-title">AI & Robots</div><div class="hobby-desc">Endlessly fascinated by AI, robotics and what technology can do next.</div></div>
+    <div class="hobby-card reveal"><div class="hobby-ico">✈️</div><div class="hobby-title">Exploring</div><div class="hobby-desc">From Bangalore to Melbourne — always discovering new places!</div></div>
+  </div>
+  <div class="yt-card reveal">
+    <div class="yt-ico">🎮</div>
+    <div class="yt-name">NiaGaming</div>
+    <p class="yt-desc">Hey hey! I'm Neha, also known as Nia — a gamer girl from Bangalore, India, now building AI in Melbourne. 1.39K subscribers · 217 videos · gaming streams & good vibes!</p>
+    <a href="https://www.youtube.com/@NiaGaming2110" target="_blank" class="yt-btn">▶ Watch on YouTube</a>
+  </div>
+</section>
+
+<!-- CHATBOT -->
+<div class="sec-tinted" id="chat">
+  <div class="sec-inner">
+    <div class="sec-label" style="text-align:center">Ask anything</div>
+    <h2 class="sec-title" style="text-align:center">Ask AI <span>About Neha</span></h2>
+    <p style="text-align:center;color:var(--muted);margin-bottom:2rem;font-size:0.9rem">Curious about me? My AI assistant knows everything!</p>
+    <div class="chatbox">
+      <div class="chat-head">
+        <div class="chat-av">🤖</div>
+        <div><div class="chat-nm">Neha's AI Assistant ✨</div><div class="chat-st">● Online & ready!</div></div>
+      </div>
+      <div class="chat-msgs" id="chatMsgs">
+        <div class="msg msg-bot">Hiii! 👋🌸 I'm Neha's AI assistant! I know her projects, skills, experience and hobbies. What would you like to know? ✨</div>
+      </div>
+      <div class="quick-qs">
+        <span class="quick-q" onclick="askQ('What AI projects has Neha built?')">AI projects?</span>
+        <span class="quick-q" onclick="askQ('What are her skills?')">Skills?</span>
+        <span class="quick-q" onclick="askQ('Tell me her story')">Her story?</span>
+        <span class="quick-q" onclick="askQ('What makes her unique?')">Why hire her?</span>
+        <span class="quick-q" onclick="askQ('What are her hobbies?')">Hobbies?</span>
+      </div>
+      <div class="chat-inp-area">
+        <input class="chat-inp" id="chatInp" placeholder="Ask about Neha..." onkeypress="if(event.key==='Enter')sendChat()">
+        <button class="chat-send" onclick="sendChat()">Send 💬</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="sec-tinted-mint" id="quiz">
+  <div class="sec-inner">
+    <div class="sec-label" style="text-align:center">Fun game</div>
+    <h2 class="sec-title" style="text-align:center">How Well Do You <span>Know Neha?</span> 🪙</h2>
+    <p style="text-align:center;color:var(--muted);margin-bottom:2rem;font-size:0.9rem">Answer correctly and earn coins!</p>
+    <div class="quiz-box">
+      <div id="qgame">
+        <div class="quiz-hd">
+          <div class="quiz-score">🪙 Score: <span id="score">0</span></div>
+          <div class="quiz-prog">Question <span id="qnum">1</span> of 10</div>
+        </div>
+        <div class="quiz-q" id="qq">Loading...</div>
+        <div class="quiz-opts" id="qopts"></div>
+        <div class="quiz-fb" id="qfb"></div>
+        <button class="quiz-next" id="qnext" onclick="nextQ()">Next ➡️</button>
+      </div>
+      <div class="quiz-res" id="qres">
+        <div class="res-emoji" id="remo">🎉</div>
+        <div class="res-score" id="rscore"></div>
+        <div class="res-msg" id="rmsg"></div>
+        <button class="quiz-restart" onclick="restartQ()">Play Again 🔄</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="sec-label">Say hello</div>
+  <h2 class="sec-title" style="text-align:center">Let's <span>Connect!</span> 🌸</h2>
+  <div class="contact-grid">
+    <a href="mailto:nehadurgadmath12@gmail.com" class="contact-card"><div class="con-ico">✉️</div><div>nehadurgadmath12@gmail.com</div><div class="con-lbl">Email</div></a>
+    <a href="https://linkedin.com/in/neha-durgadmath" target="_blank" class="contact-card"><div class="con-ico">💼</div><div>neha-durgadmath</div><div class="con-lbl">LinkedIn</div></a>
+    <a href="https://github.com/NehaDurgadmath" target="_blank" class="contact-card"><div class="con-ico">💻</div><div>NehaDurgadmath</div><div class="con-lbl">GitHub</div></a>
+    <a href="https://www.youtube.com/@NiaGaming2110" target="_blank" class="contact-card"><div class="con-ico">🎮</div><div>NiaGaming</div><div class="con-lbl">YouTube</div></a>
+    <a href="tel:+61484349763" class="contact-card"><div class="con-ico">📞</div><div>+61 484 349 763</div><div class="con-lbl">Phone</div></a>
+  </div>
+</section>
+
+<footer>
+  <p>Made with 💕 by Neha Durgadmath · AI Engineer · Data Scientist · Gamer · Painter · Melbourne 🌸</p>
+</footer>
+
+<script>
+// CURSOR + SPARKLES
+const cur=document.getElementById('cur');
+const sps=['🌸','✨','💜','⭐','🤖'];
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
+document.addEventListener('click',e=>{
+  for(let i=0;i<3;i++){
+    const s=document.createElement('div');s.className='sp';
+    s.textContent=sps[Math.floor(Math.random()*sps.length)];
+    s.style.left=(e.clientX+(Math.random()-.5)*35)+'px';
+    s.style.top=(e.clientY+(Math.random()-.5)*35)+'px';
+    document.body.appendChild(s);setTimeout(()=>s.remove(),700);
+  }
+});
+
+// LEAVES on sides only
+const leafTypes=['🍃','🌿','🍀','🌸','🌺'];
+for(let i=0;i<8;i++){
+  const l=document.createElement('div');
+  l.className='leaf '+(i%2===0?'leaf-left':'leaf-right');
+  l.textContent=leafTypes[i%leafTypes.length];
+  l.style.animationDuration=(8+Math.random()*8)+'s';
+  l.style.animationDelay=(-Math.random()*8)+'s';
+  l.style.left=(i%2===0?'0':'auto');
+  l.style.right=(i%2===0?'auto':'0');
+  document.body.appendChild(l);
+}
+
+// TYPING
+const phrases=['building agentic AI 🤖','training LLMs ✨','implementing RAG 📚','streaming games 🎮','painting 🎨','exploring Melbourne ☕','learning every day 🌱'];
+let pi=0,ci=0,del=false;
+const tEl=document.getElementById('typing');
+function type(){
+  const p=phrases[pi];
+  if(!del){tEl.textContent=p.slice(0,++ci);if(ci===p.length){del=true;setTimeout(type,2000);return;}}
+  else{tEl.textContent=p.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length;}}
+  setTimeout(type,del?40:80);
+}
+type();
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// HORIZONTAL SCROLL
+function scrollProj(dir){
+  const t=document.getElementById('projTrack');
+  t.scrollBy({left:dir*340,behavior:'smooth'});
+}
+// drag to scroll
+const track=document.getElementById('projTrack');
+let isDragging=false,startX,scrollLeft;
+track.addEventListener('mousedown',e=>{isDragging=true;startX=e.pageX-track.offsetLeft;scrollLeft=track.scrollLeft;track.style.cursor='grabbing';});
+track.addEventListener('mouseleave',()=>{isDragging=false;track.style.cursor='grab';});
+track.addEventListener('mouseup',()=>{isDragging=false;track.style.cursor='grab';});
+track.addEventListener('mousemove',e=>{if(!isDragging)return;e.preventDefault();const x=e.pageX-track.offsetLeft;track.scrollLeft=scrollLeft-(x-startX)*1.5;});
+
+// MUSIC
+let playing=false;
+function toggleMusic(){
+  const a=document.getElementById('bgm');const b=document.getElementById('music-btn');
+  if(playing){a.pause();b.textContent='🎵';playing=false;}
+  else{a.play().catch(()=>{});b.textContent='🔇';playing=true;}
+}
+
+// CHATBOT
+const kb={
+  projects:`Neha built some amazing things! 🤖\n\n1. Cevo AI Client Onboarding System — fully agentic pipeline using OpenAI and AWS SES.\n\n2. BIG W RAG Support Bot — RAG system with real policy docs, Data Sovereignty compliant!\n\nAlso: Apple vs Samsung analysis, road safety models, revenue forecasting white paper and cultural diversity research! 📊`,
+  skills:`Neha's skills: 💜\n\nAI: LLM training, prompt engineering, RAG, agentic AI, vectorisation\nAWS: SES, S3, Lambda, SageMaker, Bedrock, Redshift\nProgramming: Python, R, SQL\nData: Power BI, Tableau, predictive modelling`,
+  story:`Neha's journey ✨\n\nStarted as Co-founder & CEO in Bangalore → moved to Melbourne for Master of Data Science at RMIT → published research papers → worked as Data Scientist → now AI Engineer training LLMs. Also streams games as NiaGaming! 🎮`,
+  unique:`What makes Neha special 🌟\n\nRare combo of entrepreneurial leadership + published research + hands-on LLM experience + independently built AI systems. She built projects inspired by real enterprise workflows just because she loves learning!`,
+  hobbies:`Neha's hobbies 🎉\n\n🎮 Streams games on YouTube as NiaGaming (1.39K subs!)\n🎨 Loves painting\n🤖 Fascinated by AI and robots\n✈️ Exploring Melbourne after moving from Bangalore!`,
+  contact:`Reach Neha at:\n📧 nehadurgadmath12@gmail.com\n💼 linkedin.com/in/neha-durgadmath\n💻 github.com/NehaDurgadmath\n🎮 youtube.com/@NiaGaming2110\n📍 Melbourne, Australia`
+};
+function getAns(q){
+  q=q.toLowerCase();
+  if(q.includes('project')||q.includes('built')||q.includes('rag'))return kb.projects;
+  if(q.includes('skill')||q.includes('know')||q.includes('aws'))return kb.skills;
+  if(q.includes('story')||q.includes('journey')||q.includes('background'))return kb.story;
+  if(q.includes('unique')||q.includes('hire')||q.includes('special'))return kb.unique;
+  if(q.includes('hobby')||q.includes('game')||q.includes('youtube'))return kb.hobbies;
+  if(q.includes('contact')||q.includes('email')||q.includes('reach'))return kb.contact;
+  return "Great question! 🌸 Neha is an AI Engineer and Data Scientist in Melbourne who loves building things, gaming and painting. Try asking about her projects, skills or story!";
+}
+function addMsg(t,type){
+  const d=document.createElement('div');d.className=`msg msg-${type}`;d.textContent=t;
+  const m=document.getElementById('chatMsgs');m.appendChild(d);m.scrollTop=m.scrollHeight;
+}
+function showTyping(){
+  const m=document.getElementById('chatMsgs');const d=document.createElement('div');
+  d.className='msg-typing';d.id='tind';
+  d.innerHTML='<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+  m.appendChild(d);m.scrollTop=m.scrollHeight;
+}
+function removeTyping(){const t=document.getElementById('tind');if(t)t.remove();}
+function askQ(q){document.getElementById('chatInp').value=q;sendChat();}
+function sendChat(){
+  const inp=document.getElementById('chatInp');const q=inp.value.trim();if(!q)return;
+  addMsg(q,'user');inp.value='';showTyping();
+  setTimeout(()=>{removeTyping();addMsg(getAns(q),'bot');},700+Math.random()*500);
+}
+
+// QUIZ
+const Qs=[
+  {q:"What city does Neha live in?",opts:["Sydney","Melbourne","Brisbane","Perth"],ans:1},
+  {q:"What is Neha's Master's degree in?",opts:["MBA","Computer Science","Data Science","Marketing"],ans:2},
+  {q:"What programming language does Neha use most?",opts:["Java","Python","C++","JavaScript"],ans:1},
+  {q:"What cloud platform does Neha mainly use?",opts:["Google Cloud","Azure","AWS","Oracle"],ans:2},
+  {q:"What was Neha's role before Data Science?",opts:["Teacher","Designer","CEO & Co-founder","Doctor"],ans:2},
+  {q:"What is Neha becoming now?",opts:["Software Tester","AI Engineer","Graphic Designer","HR Manager"],ans:1},
+  {q:"What kind of problems does Neha love solving?",opts:["Math puzzles","Gaming levels","Real-world business problems using AI","Cooking recipes"],ans:2},
+  {q:"Where did Neha complete her Bachelor's degree?",opts:["Delhi","Mumbai","Bangalore","Chennai"],ans:2},
+  {q:"Which tool does Neha use for dashboards?",opts:["Excel only","Canva","Power BI","Photoshop"],ans:2},
+  {q:"What type of AI does Neha enjoy most?",opts:["Basic chatbots","Agentic AI (AI that acts!)","Only image AI","Game AI"],ans:1}
+];
+let qi=0,sc=0,answered=false;
+function loadQ(){
+  const q=Qs[qi];
+  document.getElementById('qq').textContent=q.q;
+  document.getElementById('qnum').textContent=qi+1;
+  document.getElementById('qfb').textContent='';
+  document.getElementById('qfb').className='quiz-fb';
+  document.getElementById('qnext').style.display='none';
+  answered=false;
+  const opts=document.getElementById('qopts');opts.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const b=document.createElement('button');b.className='quiz-opt';b.textContent=o;
+    b.onclick=()=>answer(i,b);opts.appendChild(b);
+  });
+}
+function answer(i,btn){
+  if(answered)return;answered=true;
+  const q=Qs[qi];
+  document.querySelectorAll('.quiz-opt')[q.ans].classList.add('correct');
+  const fb=document.getElementById('qfb');
+  if(i===q.ans){
+    sc++;document.getElementById('score').textContent=sc;
+    btn.classList.add('correct');fb.textContent='🎉 Correct! 🪙';fb.className='quiz-fb correct';
+    spawnCoins();
+  }else{btn.classList.add('wrong');fb.textContent='❌ Not quite! See the correct answer above.';fb.className='quiz-fb wrong';}
+  document.getElementById('qnext').style.display='block';
+}
+function spawnCoins(){
+  for(let i=0;i<6;i++){
+    const c=document.createElement('div');c.className='coin';c.textContent='🪙';
+    c.style.left=(25+Math.random()*50)+'vw';c.style.top='60vh';
+    c.style.animationDelay=(i*.1)+'s';
+    document.body.appendChild(c);setTimeout(()=>c.remove(),1100);
+  }
+}
+function nextQ(){qi++;if(qi>=Qs.length){showRes();return;}loadQ();}
+function showRes(){
+  document.getElementById('qgame').style.display='none';
+  const r=document.getElementById('qres');r.style.display='block';
+  const p=sc/Qs.length;
+  let e,m;
+  if(p===1){e='🏆';m='PERFECT! You are officially a Neha expert! 🌟';}
+  else if(p>=.7){e='🎉';m='Great job! You know Neha really well! 💜';}
+  else if(p>=.5){e='😊';m='Not bad! Keep exploring to learn more! ✨';}
+  else{e='🌱';m='Keep scrolling — there is lots to discover! 🌸';}
+  document.getElementById('remo').textContent=e;
+  document.getElementById('rscore').textContent=`${sc}/10 coins! 🪙`;
+  document.getElementById('rmsg').textContent=m;
+}
+function restartQ(){
+  qi=0;sc=0;answered=false;
+  document.getElementById('score').textContent='0';
+  document.getElementById('qgame').style.display='block';
+  document.getElementById('qres').style.display='none';
+  loadQ();
+}
+loadQ();
+</script>
+</body>
+</html>
+```
+
